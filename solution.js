@@ -19,3 +19,18 @@ for(var i = 0; i < inputArray.length; i++){
     var bracketsMatched = checkBrackets(inputArray[i]);
     console.log(bracketsMatched == false?"No":bracketsMatched);
 }
+function checkBrackets(inputValue){
+    console.log(inputValue);
+    var sequence = [];
+    var regexMatched = regexMatch.test(inputValue);
+    //console.log(regexMatched);
+    if(regexMatched == false){
+        //return "No";
+    }
+    for(var i = 0; i <= inputValue.length; i++){
+        if (inputValue[i] === '(' || inputValue[i] === '[' || inputValue[i] === '{') {
+            sequence.push(inputValue[i]);
+        }
+    }
+    return "Yes";
+}
