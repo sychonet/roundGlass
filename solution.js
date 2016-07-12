@@ -9,11 +9,9 @@ var matchingBrackets = {
     '[': ']',
     '{': '}'
 };
-var value = "(()((())(){))  ";
 var inputArray = rl.input.split('\n');
 inputArray = inputArray.map(Function.prototype.call, String.prototype.trim);
-var noOfInputs = inputArray.shift();
-var regexMatch = new RegExp("/^[[]{}()]+$/");
+inputArray.shift();
 for(var i = 0; i < inputArray.length; i++){
     //console.log(inputArray[i]);
     var bracketsMatched = checkBrackets(inputArray[i]);
@@ -22,14 +20,15 @@ for(var i = 0; i < inputArray.length; i++){
 function checkBrackets(inputValue){
     console.log(inputValue);
     var sequence = [];
-    var regexMatched = regexMatch.test(inputValue);
-    //console.log(regexMatched);
-    if(regexMatched == false){
-        //return "No";
-    }
     for(var i = 0; i <= inputValue.length; i++){
         if (inputValue[i] === '(' || inputValue[i] === '[' || inputValue[i] === '{') {
             sequence.push(inputValue[i]);
+        } else {
+            var lastSequenceCharacter = sequence.pop();
+            console.log(inputValue[i],matchingBrackets[lastSequenceCharacter]);
+            if (inputValue[i] !== matchingBrackets[lastSequenceCharacter]) {
+                return "No";
+            }
         }
     }
     return "Yes";
